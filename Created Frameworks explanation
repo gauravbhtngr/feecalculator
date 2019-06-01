@@ -1,0 +1,52 @@
+######################## Batchprocess Framework ####################################
+
+#BatchRunner
+This is used to do batch processing of any kind of batch, This help us to do batch processing in chunks supports many other 
+operations like sending emails before some work or do any operations before and after step.
+
+This chains the Batch steps and execute those once batch is started.
+ 
+Currently supported batch steps
+CollectionStep and SupplierStep
+
+For each step you can provide preprocessing consumer and postProcessing consumer
+
+#SimpleBatchRunner
+This is the simple implementation of BatchRunner
+
+
+#UnitTest for SimpleBatchRunner
+test public void execute() to check it execute all the configured steps.
+
+test private void start(BatchStep step) to check if the start step is not SupplierStep then throw exception.
+
+
+##################### Extractor Framework ########################
+
+#DataExtractor
+ 
+This is an interface with one extract method which takes MapperFunction as argument to decide how we want to map extracted data to
+Our POJO
+
+We have two type of extractors 
+1. TXTFileDataExtractor which read from txt file after that extract and map data based on provided MapperFunction.
+1. ExcelFileDataExtractor which read from excel file after that extract and map data based on provided MapperFunction.
+
+Configuration object that support two parameters currently 
+1. path : File path 
+2. headerEnabled (default value is true) : If the file we want to feed has headers or now. 
+
+DataExtractor extract data based on provided Configuration object.
+
+##################### Report Framework ##################################
+
+#Generator 
+IReportGenerator is an interface that has one method generate that takes IReport as an agrument.
+
+#IReport<T> is an interface that has 
+contract for Header, FilePath, Objects and writer.
+
+Any implementation class will need to provide their own headers, filepath, collection objects and a writer
+
+#ReportWriter is an interface with one method getText 
+any implementation of this writer will have to process the provided object and return a text that will be appear in the report

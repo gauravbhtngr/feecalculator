@@ -1,0 +1,38 @@
+Looking at the challenge there are following modules.
+
+1. Extract the data from any given source.
+2. Process the data based on the given rule.
+3. Generate the report in any given format.
+
+This is basically ET(Extract and Transform).
+
+For this I have created 3 frameworks.
+
+################### Created framework short explain (More details available in "Created Frameworks explanation.txt") ##########
+
+1. Batchprocess Framework : Since Extract and transform is step execution, First step is extracting the data and next step is transform
+So this framework will help us do any kind of step execution with feature like chunk process, preprocess handling Post process handling.
+
+2. Extractor Framework : This is used to extract the data from any provided way, Currently we have two TXTFileDataExtractor and 
+ExcelFileDataExtractor, But it can be extended to support any kind of medium, (Even rest api)
+
+Extractor simply extract the data from from given source and mapping logic to map data to POJO is separate from extractor
+Which is done by providing a mapperFunction in extractor.
+
+
+3. Report Framework : This framework provide the way to generate the report and can be extended by any custom report.
+for more info check "Created Frameworks explanation" txt file.
+
+Note: All these 3 frameworks work independently to each other and can be packed a separate jars to use anywhere else if required.
+ 
+ 
+#################### Fee calculator ##################
+
+With the use of above 3 created frameworks.
+
+1. Data is extracted from any source.
+2. Fee is calculated by given rule.
+3. Report is generated.
+
+Because we have batchrunner we can add any step in future if required like Loader step or multiple report generation step
+or notification step to the owner.
